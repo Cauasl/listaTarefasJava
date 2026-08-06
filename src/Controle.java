@@ -29,9 +29,7 @@ public class Controle {
         }
     }
 
-    public String[] statusTarefa(String nome) {
-
-    }
+    
 
     //Retira a caractere repetida escolhida
     private String semCaracteresParecidos(String texto, char caracterRepetido) {
