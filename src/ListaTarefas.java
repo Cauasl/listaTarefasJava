@@ -25,13 +25,36 @@ public class ListaTarefas {
 
     }
 
+    // Sobrecarga de métodos
     public void adicionarTarefa(String nome, String descricao, byte nivelPrioridade) {
         if (tamanhoString(nome, descricao)) {
-            listaTarefas.put(nome, new Tarefa(nome, descricao, nivelPrioridade));
+            listaTarefas.put(nome, new Tarefa(nome.trim(), descricao.trim(), nivelPrioridade));
         }else {
             System.out.println("Os dados não apresentam os criterios");
         }
     }
+    public void adicionarTarefa(String nome, String descricao) {
+        if (tamanhoString(nome, descricao)) {
+            listaTarefas.put(nome, new Tarefa(nome.trim(), descricao.trim(), (byte) 0));
+        }else {
+            System.out.println("Os dados não apresentam os criterios");
+        }
+    }
+    public void adicionarTarefa(String nome, byte nivelPrioridade) {
+        if (nome.length() <= 26) {
+            listaTarefas.put(nome, new Tarefa(nome.trim(), " ", nivelPrioridade));
+        }else {
+            System.out.println("Os dados não apresentam os criterios");
+        }
+    }
+    public void adicionarTarefa(String nome) {
+        if (nome.length() <= 26) {
+            listaTarefas.put(nome, new Tarefa(nome.trim(), " ", (byte) 0));
+        }else {
+            System.out.println("Os dados não apresentam os criterios");
+        }
+    }
+
 
     public void mudarNomeTarefa(String antigoNome, String novoNome) {
         try {
@@ -64,7 +87,7 @@ public class ListaTarefas {
         try {
             listaTarefas.remove(nome);
         }catch (NullPointerException e) {
-            System.out.println("Tarefa não contrada");
+            System.out.println("Tarefa não encontrada");
         }
     }
 }

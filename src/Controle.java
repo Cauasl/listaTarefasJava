@@ -16,7 +16,9 @@ public class Controle {
         }else { //Se passar pela verificação da formatação
             String tarefa = semCaracteresParecidos(entr, ':').trim().replaceAll("![a-zA-Z]+", "");
 
-            if(tarefa.contains(":")) {
+
+
+            if(tarefa.contains(":") && tarefa.contains("#")) {
                 String[] tarefaRepartida = tarefa.split(":"); //Separa a string em dois [Nome da tarefa, descrição e prioridade]
                 String[] descr = tarefaRepartida[1].split("#"); //Separa a string em dois [decrição, prioridade]
 
@@ -25,6 +27,14 @@ public class Controle {
 
                 listaTarefas.adicionarTarefa(nome, descr[0].trim(), prioridade);
                 System.out.println(listaTarefas.pegarTarefa(nome));
+            }else if(tarefa.contains(":") && !tarefa.contains("#")) {
+                String[] tarefaRepartida = tarefa.split(":");
+
+                listaTarefas.adicionarTarefa(tarefaRepartida[0], tarefaRepartida[1]);
+                System.out.println(listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
+            }else {
+                listaTarefas.adicionarTarefa(tarefa);
+                System.out.println(listaTarefas.pegarTarefa(tarefa));
             }
         }
     }
