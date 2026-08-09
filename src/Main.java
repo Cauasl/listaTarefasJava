@@ -4,7 +4,5 @@ void main() {
     Controle controle = new Controle();
     //Scanner sc = new Scanner(System.in);
 
-    controle.entrada("Pegar pão #2");
-    controle.entrada("!concluir 'Pegar pão'");
-    controle.printarTarefa("Pegar pão");
+    
 }

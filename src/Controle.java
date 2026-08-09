@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -45,6 +46,19 @@ public class Controle {
 
     public void printarTarefa(String nome) {
         System.out.println(listaTarefas.pegarTarefa(nome));
+    }
+
+    public ArrayList<String> naoConcluidas() {
+        ArrayList<Tarefa> tarefas = listaTarefas.tarefasConcluidas();
+        ArrayList<String> naoconcluidas = new ArrayList<>();
+
+        tarefas.forEach((valor) -> {
+            if(!valor.getStatus()) {
+                naoconcluidas.add(valor.getNome() + ": " + valor.getDescricao() + " " + valor.getNivelPrioridade());
+            }
+        });
+
+        return naoconcluidas;
     }
     
 

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Comando {
     private ListaTarefas listaTarefas;
 
@@ -31,6 +33,15 @@ public class Comando {
                         }
                         break;
 
+                    case "historico":
+                        ArrayList<Tarefa> tarefas = listaTarefas.tarefasConcluidas();
+
+                        tarefas.forEach((valor) -> {
+                            if(valor.getStatus()) {
+                                System.out.println(valor.getNome() + ": CONCLUIDA");
+                            }
+                        });
+                    break;
                     default:
                         System.out.println("Comando não reconhecido: " + cmd);
                 }

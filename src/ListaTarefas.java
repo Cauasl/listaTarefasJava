@@ -1,6 +1,7 @@
 import excecoes.ExcecaoLimiteCaracteresDescricao;
 import excecoes.ExcecaoLimiteCaracteresNome;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ListaTarefas {
@@ -22,7 +23,6 @@ public class ListaTarefas {
             System.out.println(e.getMessage());
             return false;
         }
-
     }
 
     // Sobrecarga de métodos
@@ -55,6 +55,14 @@ public class ListaTarefas {
         }
     }
 
+    public ArrayList<Tarefa> tarefasConcluidas() {
+        ArrayList<Tarefa> tarefasS = new ArrayList<>();
+
+        listaTarefas.forEach((chave, valor) -> {
+            tarefasS.add(valor);
+        });
+        return tarefasS;
+    }
 
     public void mudarNomeTarefa(String antigoNome, String novoNome) {
         try {
@@ -79,9 +87,7 @@ public class ListaTarefas {
         return listaTarefas.get(nome);
     }
 
-    public boolean tarefaExiste(String nome) {
-        return listaTarefas.containsKey(nome);
-    }
+    public boolean tarefaExiste(String nome) { return listaTarefas.containsKey(nome); }
 
     public void excluir(String nome) {
         try {
