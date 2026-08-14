@@ -17,48 +17,46 @@ public class Controle {
         }else { //Se passar pela verificação da formatação
             String tarefa = semCaracteresParecidos(entr, ':').trim().replaceAll("![a-zA-Z]+", "");
 
+            if(tarefa.length() > 3) {
+                if (tarefa.contains(":") && tarefa.contains("#")) {
+                    String[] tarefaRepartida = tarefa.split(":"); //Separa a string em dois [Nome da tarefa, descrição e prioridade]
+                    String[] descr = tarefaRepartida[1].split("#"); //Separa a string em dois [decrição, prioridade]
 
-            if(tarefa.contains(":") && tarefa.contains("#")) {
-                String[] tarefaRepartida = tarefa.split(":"); //Separa a string em dois [Nome da tarefa, descrição e prioridade]
-                String[] descr = tarefaRepartida[1].split("#"); //Separa a string em dois [decrição, prioridade]
+                    String nome = tarefaRepartida[0];
+                    byte prioridade = Byte.valueOf(descr[1].replaceAll("[^0-9]", ""));
 
-                String nome = tarefaRepartida[0];
-                byte prioridade = Byte.valueOf(descr[1].replaceAll("[^0-9]", ""));
+                    listaTarefas.adicionarTarefa(nome, descr[0].trim(), prioridade);
+                    System.out.println(": e # - " + listaTarefas.pegarTarefa(nome));
+                } else if (tarefa.contains(":") && !tarefa.contains("#")) {
+                    String[] tarefaRepartida = tarefa.split(":");
 
-                listaTarefas.adicionarTarefa(nome, descr[0].trim(), prioridade);
-                System.out.println(": e # - " + listaTarefas.pegarTarefa(nome));
-            }else if(tarefa.contains(":") && !tarefa.contains("#")) {
-                String[] tarefaRepartida = tarefa.split(":");
+                    listaTarefas.adicionarTarefa(tarefaRepartida[0], tarefaRepartida[1]);
+                    System.out.println(": e !# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
+                } else if (tarefa.contains("#")) {
+                    String[] tarefaRepartida = tarefa.split("#");
 
-                listaTarefas.adicionarTarefa(tarefaRepartida[0], tarefaRepartida[1]);
-                System.out.println(": e !# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
-            }else if(tarefa.contains("#")) {
-                String[] tarefaRepartida = tarefa.split("#");
-
-                listaTarefas.adicionarTarefa(tarefaRepartida[0], Byte.valueOf(tarefaRepartida[1].trim()));
-                System.out.println("# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
+                    listaTarefas.adicionarTarefa(tarefaRepartida[0], Byte.valueOf(tarefaRepartida[1].trim()));
+                    System.out.println("# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
+                } else {
+                    listaTarefas.adicionarTarefa(tarefa);
+                    System.out.println("Ultimo - " + listaTarefas.pegarTarefa(tarefa));
+                }
             }else {
-                listaTarefas.adicionarTarefa(tarefa);
-                System.out.println("Ultimo - " + listaTarefas.pegarTarefa(tarefa));
+                System.out.println("Tarefa vazia");
             }
         }
     }
 
-    public void printarTarefa(String nome) {
-        System.out.println(listaTarefas.pegarTarefa(nome));
-    }
 
-    public ArrayList<String> naoConcluidas() {
+    public void naoConcluidas() {
         ArrayList<Tarefa> tarefas = listaTarefas.tarefasConcluidas();
-        ArrayList<String> naoconcluidas = new ArrayList<>();
 
         tarefas.forEach((valor) -> {
             if(!valor.getStatus()) {
-                naoconcluidas.add(valor.getNome() + ": " + valor.getDescricao() + " " + valor.getNivelPrioridade());
+                System.out.println(valor.getNome() + ": " + valor.getDescricao() + " #" + valor.getNivelPrioridade());
             }
         });
 
-        return naoconcluidas;
     }
     
 
