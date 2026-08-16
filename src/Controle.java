@@ -6,7 +6,7 @@ public class Controle {
     private ListaTarefas listaTarefas = new ListaTarefas();
     private Comando comando = new Comando(listaTarefas);
 
-    public void entrada(String entr) {
+    public void entrada(String entr) throws ArrayIndexOutOfBoundsException {
         //Verifica se é um comando ou tarefa.
         if (entr.contains("!") && !entr.contains(":") && !entr.contains("#")) {
             String txt = entr.trim().replaceFirst(".*!([a-zA-Z]+)", "$1"); //Retira tudo antes da exclamação
@@ -15,7 +15,8 @@ public class Controle {
             comando.comandos(txt2);
 
         }else { //Se passar pela verificação da formatação
-            String tarefa = semCaracteresParecidos(entr, ':').trim().replaceAll("![a-zA-Z]+", "");
+            String tarefa = semCaracteresEntradaParecidos(entr.trim().replaceAll("![a-zA-Z]+", ""));
+            System.out.println(tarefa);
 
             if(tarefa.length() > 3) {
                 if (tarefa.contains(":") && tarefa.contains("#")) {
@@ -26,20 +27,20 @@ public class Controle {
                     byte prioridade = Byte.valueOf(descr[1].replaceAll("[^0-9]", ""));
 
                     listaTarefas.adicionarTarefa(nome, descr[0].trim(), prioridade);
-                    System.out.println(": e # - " + listaTarefas.pegarTarefa(nome));
+                    //System.out.println(": e # - " + listaTarefas.pegarTarefa(nome));
                 } else if (tarefa.contains(":") && !tarefa.contains("#")) {
                     String[] tarefaRepartida = tarefa.split(":");
 
                     listaTarefas.adicionarTarefa(tarefaRepartida[0], tarefaRepartida[1]);
-                    System.out.println(": e !# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
+                    //System.out.println(": e !# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
                 } else if (tarefa.contains("#")) {
                     String[] tarefaRepartida = tarefa.split("#");
 
                     listaTarefas.adicionarTarefa(tarefaRepartida[0], Byte.valueOf(tarefaRepartida[1].trim()));
-                    System.out.println("# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
+                    //System.out.println("# - " + listaTarefas.pegarTarefa(tarefaRepartida[0].trim()));
                 } else {
                     listaTarefas.adicionarTarefa(tarefa);
-                    System.out.println("Ultimo - " + listaTarefas.pegarTarefa(tarefa));
+                    //System.out.println("Ultimo - " + listaTarefas.pegarTarefa(tarefa));
                 }
             }else {
                 System.out.println("Tarefa vazia");
@@ -60,20 +61,19 @@ public class Controle {
     }
     
 
-    //Retira a caractere repetida escolhida
-    private String semCaracteresParecidos(String texto, char caracterRepetido) {
+    //Retira as caracteres de comando repetidas
+    private String semCaracteresEntradaParecidos(String texto) {
         Set<Character> visto = new HashSet<>();
         StringBuilder resposta = new StringBuilder();
-        char[] textoChar = texto.toCharArray();
 
-        for(int i=0; i < textoChar.length; i++) {
-            if(!visto.contains(caracterRepetido)) { //Se o set não tiver conter a caracter, ele adiciona
-                visto.add(textoChar[i]);
-                resposta.append(textoChar[i]);
-            }else if(visto.contains(caracterRepetido) && textoChar[i] != caracterRepetido) {
-                visto.add(textoChar[i]);
-                resposta.append(textoChar[i]);
+        for (char caractere : texto.toCharArray()) {
+            if ((caractere == ':' || caractere == '#') && visto.contains(caractere)) {
+                continue;
             }
+            if (caractere == ':' || caractere == '#') {
+                visto.add(caractere);
+            }
+            resposta.append(caractere);
         }
         return resposta.toString();
     }

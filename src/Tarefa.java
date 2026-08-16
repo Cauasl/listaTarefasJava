@@ -11,26 +11,15 @@ public class Tarefa {
     }
 
     //Getters
-    public String getNome() {
-        return nome;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public byte getNivelPrioridade() {
-        return nivelPrioridade;
-    }
-    public boolean getStatus() {
-        return status;
-    }
+    public String getNome() { return nome; }
+    public String getDescricao() { return descricao; }
+    public byte getNivelPrioridade() { return nivelPrioridade; }
+    public boolean getStatus() { return status; }
 
-    //Setters
-    public String setNome(String nome) {
-        return this.nome = nome;
-    }
-    public String setDescricao(String descricao) {
-        return this.descricao = descricao;
-    }
+
+    public String setDescricao(String descricao) { return this.descricao = descricao; }
+
+
     public byte setNivelPrioridade(byte nivelPrioridade) {
         if(nivelPrioridade > 3) {
             throw new RuntimeException("O valor da prioridade não pode passar de 3");

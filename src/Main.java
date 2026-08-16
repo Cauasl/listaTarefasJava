@@ -15,11 +15,16 @@ void main() {
         System.out.println("Comando !help para instruções.");
         System.out.print(" > ");
         entrada = sc.nextLine();
-        controle.entrada(entrada);
+        try {
+            controle.entrada(entrada);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("A tarefa ou comando não atende os critérios " + e);
+        }
+
 
 
         for(int i=0; i<5; i++) {
             System.out.println(" ");
         }
-    }while(!entrada.equals("!exit") );
+    }while(!entrada.equals("!exit"));
 }
