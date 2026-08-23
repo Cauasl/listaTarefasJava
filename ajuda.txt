@@ -1,0 +1,102 @@
+NSTRUÇÕES DE USO
+
+CRIANDO UMA TAREFA
+
+Para criar uma tarefa, basta digitar o nome dela e pressionar ENTER.
+
+Exemplo:
+Estudar Java
+
+O nome da tarefa é obrigatório e pode ter no máximo 26 caracteres.
+
+Você também pode adicionar uma descrição e uma prioridade, mas essas informações são opcionais.
+
+Formato:
+
+nome da tarefa: descrição #prioridade
+
+Exemplo:
+
+Estudar Java: estudar HashMap e HashSet #3
+
+A descrição pode ter no máximo 400 caracteres.
+
+A prioridade deve ser um número entre 0 e 3:
+0 = prioridade mais baixa
+3 = prioridade mais alta
+
+COMANDOS
+
+Os comandos são utilizados para realizar ações nas tarefas. Todos os comandos começam com !.
+
+CONCLUIR UMA TAREFA
+
+Comando:
+
+!concluir 'nome da tarefa'
+
+Exemplo:
+
+!concluir 'Estudar Java'
+
+Marca a tarefa como concluída.
+
+EXCLUIR UMA TAREFA
+
+Comando:
+
+!excluir 'nome da tarefa'
+
+Exemplo:
+
+!excluir 'Estudar Java'
+
+Exclui a tarefa.
+
+VER O HISTÓRICO
+
+Comando:
+
+!historico
+
+Mostra as tarefas que já foram concluídas.
+
+ALTERANDO UMA TAREFA
+
+Para alterar uma tarefa, você precisa informar três coisas:
+
+O nome atual da tarefa.
+O que deseja alterar.
+O novo valor.
+
+Formato:
+
+!alterar 'nome da tarefa' informação 'novo valor'
+
+As informações que podem ser alteradas são:
+
+nome
+descricao
+prioridade
+
+Exemplos:
+
+Alterar o nome:
+
+!alterar 'Estudar Java' nome 'Estudar Java e Python'
+
+Alterar a descrição:
+
+!alterar 'Estudar Java' descricao 'Estudar HashMap e HashSet'
+
+Alterar a prioridade:
+
+!alterar 'Estudar Java' prioridade '3'
+
+OBSERVAÇÃO
+
+Ao utilizar comandos que possuem o nome da tarefa, coloque o nome entre aspas simples (' ').
+
+Exemplo:
+
+!concluir 'Estudar Java'
