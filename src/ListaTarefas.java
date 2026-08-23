@@ -83,8 +83,15 @@ public class ListaTarefas {
         }
     }
 
-    public Tarefa pegarObjTarefa(String nome) throws NullPointerException {
-        return listaTarefas.get(nome);
+    public Tarefa pegarObjTarefa(String nome) {
+        Tarefa objTarefa;
+        try {
+            objTarefa = listaTarefas.get(nome);
+        }catch (NullPointerException e) {
+            System.out.println("Tarefa não existe!: " + e.getMessage());
+            objTarefa = null;
+        }
+        return objTarefa;
     }
 
     public boolean tarefaExiste(String nome) { return listaTarefas.containsKey(nome); }
@@ -93,7 +100,7 @@ public class ListaTarefas {
         try {
             listaTarefas.remove(nome);
         }catch (NullPointerException e) {
-            System.out.println("Tarefa não encontrada");
+            System.out.println("Tarefa não encontrada ou falta nome da tarefa");
         }
     }
 }
