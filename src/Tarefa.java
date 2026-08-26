@@ -17,6 +17,7 @@ public class Tarefa {
     public boolean getStatus() { return status; }
 
 
+    //Setters
     public String setDescricao(String descricao) { return this.descricao = descricao; }
 
 

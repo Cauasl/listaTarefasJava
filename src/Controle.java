@@ -16,7 +16,6 @@ public class Controle {
 
         }else { //Se passar pela verificação da formatação
             String tarefa = semCaracteresEntradaParecidos(entr.trim().replaceAll("![a-zA-Z]+", ""));
-            System.out.println(tarefa);
 
             if(tarefa.length() > 3) {
                 if (tarefa.contains(":") && tarefa.contains("#")) {

@@ -89,6 +89,18 @@ public class Comando {
                 String prioridade = valor.replaceAll("[^0-9]+", "");
                 listaTarefas.pegarObjTarefa(nomeTarefa).setNivelPrioridade(Byte.valueOf(prioridade));
                 break;
+
+            case "status":
+                if(valor == "true") {
+                    listaTarefas.pegarObjTarefa(nomeTarefa).setStatus(true);
+                    System.out.println("Marcado como concluída");
+                }
+                if(valor == "false") {
+                    listaTarefas.pegarObjTarefa(nomeTarefa).setStatus(false);
+                    System.out.println("Marcado como não concluída");
+                }
+                
+            break;
             default:
                 System.out.println("O valor oqAlterar não existe no switch");
         }
