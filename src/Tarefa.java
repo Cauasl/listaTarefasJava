@@ -7,7 +7,12 @@ public class Tarefa {
     Tarefa(String nome, String descricao, byte nivelPrioridade) {
         this.nome = nome;
         setDescricao(descricao);
-        setNivelPrioridade(nivelPrioridade);
+        try {
+            setNivelPrioridade(nivelPrioridade);
+        }catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     //Getters

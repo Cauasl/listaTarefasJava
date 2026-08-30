@@ -20,13 +20,6 @@
   <li><strong>Prioridade:</strong> valores de 0 a 3.</li>
 </ul>
 
-<p>A prioridade funciona da seguinte forma:</p>
-
-<ul>
-  <li><code>0</code> — prioridade mais baixa</li>
-  <li><code>3</code> — prioridade mais alta</li>
-</ul>
-
 <h2>Comandos</h2>
 
 <p>Os comandos são utilizados para manipular as tarefas e consultar informações. Todos os comandos começam com <code>!</code>.</p>
@@ -70,20 +63,29 @@
     <tr>
       <th>Informação</th>
       <th>Valor a ser utilizado</th>
+      <th>Tipo de entrada</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Nome</td>
       <td><code>nome</code></td>
+      <td>String</td>
     </tr>
     <tr>
       <td>Descrição</td>
       <td><code>descricao</code></td>
+      <td>String</td>
     </tr>
     <tr>
       <td>Prioridade</td>
       <td><code>prioridade</code></td>
+      <td>0-3</td>
+    </tr>
+    <tr>
+        <td>Status</td>
+        <td><code>status</code></td>
+        <td>Boolean</td>
     </tr>
   </tbody>
 </table>
